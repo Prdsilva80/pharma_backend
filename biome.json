@@ -1,0 +1,24 @@
+{
+    "formatter": {
+        "enabled": true,
+        "indentStyle": "space",
+        "indentWidth": 2,
+        "lineEnding": "lf",
+        "lineWidth": 100,
+        "quoteStyle": "double",
+        "trailingComma": "all"
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "style/useSingleQuotes": "error",
+            "style/noVar": "error",
+            "style/noConsole": "warn",
+            "style/noDebugger": "error"
+        }
+    },
+    "organizeImports": {
+        "enabled": true
+    }
+}

@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id       String   @id @default(uuid())
+  nome     String
+  email    String   @unique
+  senha    String
+  criadoEm DateTime @default(now())
+
+  pedidos Pedido[]
+}
+
+model Produto {
+  id          String   @id @default(uuid())
+  nome        String
+  descricao   String
+  preco       Float
+  estoque     Int
+  categoriaId String
+  criadoEm    DateTime @default(now())
+
+  categoria Categoria       @relation(fields: [categoriaId], references: [id])
+  pedidos   PedidoProduto[]
+}
+
+model Categoria {
+  id       String   @id @default(uuid())
+  nome     String
+  criadoEm DateTime @default(now())
+
+  produtos Produto[]
+}
+
+model Pedido {
+  id        String   @id @default(uuid())
+  usuarioId String
+  total     Float
+  status    String   @default("Pendente")
+  criadoEm  DateTime @default(now())
+
+  usuario  Usuario         @relation(fields: [usuarioId], references: [id])
+  produtos PedidoProduto[]
+}
+
+// Tabela intermediária para representar a relação N:N entre Pedido e Produto
+model PedidoProduto {
+  id            String @id @default(uuid())
+  pedidoId      String
+  produtoId     String
+  quantidade    Int
+  precoUnitario Float
+
+  pedido  Pedido  @relation(fields: [pedidoId], references: [id])
+  produto Produto @relation(fields: [produtoId], references: [id])
+}
