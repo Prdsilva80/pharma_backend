@@ -1,16 +1,12 @@
-import { ProdutoRepository } from "../repositories/ProdutoRepository";
-import { logger } from "../config/logger";
+import { CriarProdutoUseCase } from "../use-case/produto/CriarProdutoUseCase";
+import { ListarProdutosUseCase } from "../use-case/produto/ListarProdutosUseCase";
 
 export class ProdutoService {
     static async criarProduto(nome: string, descricao: string, preco: number, estoque: number, categoriaId: string) {
-        const produto = await ProdutoRepository.criarProduto(nome, descricao, preco, estoque, categoriaId);
-
-        logger.info(`Produto criado: ${produto.nome} - ${produto.id}`);
-
-        return produto;
+        return await CriarProdutoUseCase.execute(nome, descricao, preco, estoque, categoriaId);
     }
 
     static async listarProdutos() {
-        return ProdutoRepository.listarProdutos();
+        return await ListarProdutosUseCase.execute();
     }
 }
