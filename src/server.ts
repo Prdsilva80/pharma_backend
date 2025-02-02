@@ -2,8 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import routes from "./routes";
-import { logRequisicao, tratarErroGlobal } from "./middlewares";
-import { logger } from "./config/logger";
+import { logRequisicao, tratarErroGlobal } from "./middlewares"; // Middlewares de log e erros
+import { logger } from "./config/logger"; // Winston para logs
 
 dotenv.config();
 

@@ -3,6 +3,9 @@ import { UsuarioService } from "../services/UsuarioService";
 import { tratarErro } from "../helpers";
 
 export default class UsuarioController {
+    static login(arg0: string, login: any) {
+        throw new Error("Method not implemented.");
+    }
     static async criarUsuario(req: Request, res: Response) {
         try {
             const { nome, email, senha } = req.body;

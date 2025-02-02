@@ -18,6 +18,7 @@ model Usuario {
   nome     String
   email    String   @unique
   senha    String
+  role     String   @default("cliente") // "admin", "funcionario", "cliente"
   criadoEm DateTime @default(now())
 
   pedidos Pedido[]
