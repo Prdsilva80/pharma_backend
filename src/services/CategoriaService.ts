@@ -1,16 +1,12 @@
-import { CategoriaRepository } from "../repositories/CategoriaRepository";
-import { logger } from "../config/logger";
+import { CriarCategoriaUseCase } from "../use-case/categoria/CriarCategoriaUseCase";
+import { ListarCategoriasUseCase } from "../use-case/categoria/ListarCategoriasUseCase";
 
 export class CategoriaService {
     static async criarCategoria(nome: string) {
-        const categoria = await CategoriaRepository.criarCategoria(nome);
-
-        logger.info(`Categoria criada: ${categoria.nome}`);
-
-        return categoria;
+        return await CriarCategoriaUseCase.execute(nome);
     }
 
     static async listarCategorias() {
-        return CategoriaRepository.listarCategorias();
+        return await ListarCategoriasUseCase.execute();
     }
 }
