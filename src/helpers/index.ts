@@ -25,6 +25,16 @@ export const verificarSenha = async (senha: string, hash: string): Promise<boole
 };
 
 /**
+ * Compara uma senha com um hash armazenado
+ * @param senha - Senha informada pelo usuário
+ * @param hash - Hash armazenado no banco
+ * @returns {Promise<boolean>} True se a senha for válida, False se for inválida
+ */
+export const compararSenhas = async (senha: string, hash: string): Promise<boolean> => {
+    return bcrypt.compare(senha, hash);
+};
+
+/**
  * Gera um token JWT para autenticação de usuários
  * @param payload - Dados do usuário a serem armazenados no token
  * @returns Retorna um token JWT assinado
