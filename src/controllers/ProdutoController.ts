@@ -1,18 +1,12 @@
 import { Request, Response } from "express";
-import { prisma } from "../config/prisma";
+import { ProdutoService } from "../services/ProdutoService";
 import { tratarErro } from "../helpers";
-import { formatarMoeda } from "../utils";
-import { produtoSchema } from "../validators";
 
 export default class ProdutoController {
     static async criarProduto(req: Request, res: Response) {
         try {
-            produtoSchema.parse(req.body);
-
             const { nome, descricao, preco, estoque, categoriaId } = req.body;
-            const produto = await prisma.produto.create({ data: { nome, descricao, preco, estoque, categoriaId } });
-
-            console.log(`Produto criado: ${nome}, Preço: ${formatarMoeda(preco)}`);
+            const produto = await ProdutoService.criarProduto(nome, descricao, preco, estoque, categoriaId);
 
             return res.status(201).json(produto);
         } catch (error) {
@@ -23,7 +17,7 @@ export default class ProdutoController {
 
     static async listarProdutos(req: Request, res: Response) {
         try {
-            const produtos = await prisma.produto.findMany();
+            const produtos = await ProdutoService.listarProdutos();
             return res.status(200).json(produtos);
         } catch (error) {
             return res.status(500).json({ error: "Erro ao buscar produtos." });
