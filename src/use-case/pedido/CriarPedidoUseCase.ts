@@ -1,12 +1,12 @@
+import { pedidoSchema } from "../../validators";
 import { PedidoRepository } from "../../repositories/PedidoRepository";
 import { ProdutoRepository } from "../../repositories/ProdutoRepository";
 import { logger } from "../../config/logger";
 
 export class CriarPedidoUseCase {
     static async execute(usuarioId: string, produtos: { id: string; quantidade: number }[]) {
-        if (!produtos || produtos.length === 0) {
-            throw new Error("O pedido deve conter pelo menos um produto.");
-        }
+        // Valida os dados com Zod
+        pedidoSchema.parse({ usuarioId, produtos });
 
         let total = 0;
 
@@ -18,6 +18,7 @@ export class CriarPedidoUseCase {
             total += produto.preco * item.quantidade;
         }
 
+        // Agora passamos os três argumentos corretamente
         const pedido = await PedidoRepository.criarPedido(usuarioId, total, produtos);
 
         logger.info(`Novo pedido criado para usuário ${usuarioId}, Total: ${total}`);

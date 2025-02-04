@@ -10,6 +10,7 @@ interface AuthenticatedRequest extends ExpressRequest {
         id: string;
         nome: string;
         email: string;
+        role?: string; // Make role optional
     };
 }
 
@@ -24,8 +25,8 @@ router.get("/perfil", autenticarJWT, (req: AuthenticatedRequest, res: Response) 
 });
 
 // Exemplo de rota protegida para Admin
-router.get("/admin", autenticarJWT, (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-    if (req.usuario?.email !== "admin@email.com") {
+router.get("/admin", autenticarJWT, (req: AuthenticatedRequest, res: Response) => {
+    if (req.usuario?.role !== "admin") {
         return res.status(403).json({ error: "Acesso negado" });
     }
     res.json({ message: "Acesso permitido para administradores" });

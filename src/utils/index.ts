@@ -43,6 +43,11 @@ export const validarEmail = (email: string): boolean => {
     return regex.test(email);
 };
 
+export const validarSenha = (senha: string): boolean => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return regex.test(senha);
+};
+
 /**
  * Converte um valor monetário para formato brasileiro
  * @param valor - Valor numérico a ser formatado
