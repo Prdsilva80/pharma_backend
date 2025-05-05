@@ -1,112 +1,110 @@
-# 💊 farmacia-backend
+# farmacia-backend
 
-## 🇧🇷 Descrição
+## 🇧🇷 Visão Geral
 
-Este é o backend de um sistema completo de gerenciamento para uma farmácia. Ele foi desenvolvido com **Node.js**, **TypeScript**, **Express**, **Prisma ORM** e **PostgreSQL**, e conta com autenticação via **JWT**, validações com **Zod**, criptografia de senhas com **bcrypt**, envio de emails via **nodemailer**, e logging profissional com **Winston**. 
+Este projeto foi desenvolvido com o objetivo de criar um **sistema completo e escalável de gerenciamento para farmácias**, oferecendo funcionalidades essenciais para o controle de produtos, categorias, pedidos e usuários com diferentes níveis de acesso. A aplicação foi construída utilizando tecnologias modernas como **Node.js**, **TypeScript**, **Express**, **Prisma ORM**, e **PostgreSQL**.
 
-Além disso, o projeto inclui testes automatizados com **Jest** e **Supertest**, e segue boas práticas de arquitetura para separação de responsabilidades com `controllers`, `services`, `repositories` e `validators`.
+### Propósito do Projeto
 
-## Funcionalidades
+A ideia surgiu a partir da necessidade real de digitalizar processos manuais comuns em pequenas e médias farmácias, como o controle de estoque, pedidos e gestão de usuários. A aplicação resolve:
 
-- Cadastro e login de usuários com diferentes níveis de acesso (administrador, funcionário, cliente)
-- Gerenciamento de produtos, categorias e pedidos
-- Envio de notificações por e-mail
-- Validação e tipagem seguras
-- Cobertura de testes automatizados
-- Logs centralizados e detalhados
+- O gerenciamento centralizado de produtos, categorias e pedidos;
+- A autenticação e autorização segura de usuários com diferentes papéis (administrador, funcionário, cliente);
+- O envio automático de e-mails para notificação de eventos importantes;
+- A rastreabilidade por meio de logs detalhados.
 
-## Como rodar localmente
+### Desafios Enfrentados e Soluções
+
+1. **Separação de responsabilidades**: no início, os controllers estavam sobrecarregados. A solução foi adotar a arquitetura limpa, com divisão entre `services` e `repositories`.
+
+2. **Segurança de autenticação**: implementar JWT, criptografia de senhas com `bcrypt`, e validações com `Zod` trouxe robustez ao sistema.
+
+3. **Testes automatizados**: criar testes confiáveis com `Jest` e `Supertest` exigiu modularização e simulações realistas, garantindo estabilidade em cada release.
+
+4. **Observabilidade**: com o `Winston`, foi possível registrar logs úteis para debugging e auditoria sem comprometer a performance.
+
+### O que ainda será implementado
+
+- Dashboard com métricas (vendas, pedidos, produtos mais vendidos)
+- Integração com sistemas de pagamento
+- Upload de imagens para produtos
+- Controle de estoque com alertas automáticos
+- Histórico de atividades por usuário
+
+### Como o projeto pode evoluir
+
+Este backend já está preparado para ser acoplado a um frontend em React, Next.js ou até mesmo mobile com React Native. A arquitetura também facilita a criação de microserviços no futuro, com integração via mensageria como Kafka ou RabbitMQ.
+
+---
+
+## 🇺🇸 Overview
+
+This project was created to develop a **complete and scalable pharmacy management system**, providing essential features for product control, category and order handling, and role-based user access. It was built using modern technologies like **Node.js**, **TypeScript**, **Express**, **Prisma ORM**, and **PostgreSQL**.
+
+### Project Purpose
+
+The idea was born from the real need to digitize common manual processes in small and mid-sized pharmacies. This system solves:
+
+- Centralized management of products, categories, and orders
+- Secure user authentication and role-based authorization
+- Automated email notifications
+- Full observability with detailed logs
+
+### Challenges and Solutions
+
+1. **Separation of concerns**: Initially, controllers were overloaded. The solution was to adopt clean architecture with services and repositories.
+
+2. **Authentication security**: JWT, `bcrypt` password hashing, and `Zod` validation provided robust access control.
+
+3. **Automated testing**: Reliable testing with `Jest` and `Supertest` required good modularization and realistic mocks.
+
+4. **Observability**: With `Winston`, we implemented a detailed logging system without compromising performance.
+
+### Future Implementations
+
+- Dashboard with sales and order metrics
+- Integration with payment systems
+- Product image upload
+- Stock control with alerts
+- User activity history
+
+### How this project can grow
+
+This backend is ready to be integrated with a frontend in React, Next.js, or mobile apps using React Native. Its architecture also allows for future microservices and messaging queue integration with Kafka or RabbitMQ.
+
+---
+
+## Como rodar localmente / How to run locally
 
 ```bash
 git clone https://github.com/seu-usuario/farmacia-backend.git
 cd farmacia-backend
 
-# Instale as dependências
+# Instale as dependências / Install dependencies
 npm install
 
-# Configure o arquivo .env com suas variáveis
+# Copie o arquivo de ambiente / Setup .env
 cp .env.example .env
 
-# Execute as migrações e gere o cliente Prisma
+# Execute as migrações e gere o Prisma Client / Run migrations
 npm run prisma:migrate
 npm run prisma:generate
 
-# Inicie em modo desenvolvimento
+# Inicie em modo de desenvolvimento / Start in development mode
 npm run dev
 ```
 
-Scripts disponíveis
+---
 
-- `npm run dev — inicia o servidor com ts-node-dev`
+## Scripts Disponíveis / Available Scripts
 
-- `npm run build — compila os arquivos TypeScript para JavaScript`
-
-- `npm start — inicia o servidor com Node.js`
-
-- `npm run prisma:studio — abre a interface visual do Prisma`
-
-- `npm test — roda os testes com Jest`
-
-- `npm run test:coverage — gera o relatório de cobertura de testes`
-
-- `npm run biome:format — formata o código`
-
-- `npm run biome:check — verifica problemas de linting`
-
-## en Description
-
-This is the backend of a complete pharmacy management system. It was built with **Node.js, TypeScript, Express, Prisma ORM, and PostgreSQL**, and includes JWT authentication, validation with **Zod**, password hashing with **bcrypt**, email delivery via **nodemailer**, and professional logging using **Winston**.
-
-The project also includes automated testing with **Jest** and **Supertest**, and follows clean architecture principles using `controllers`, `services`, `repositories`, and `validators`.
-
-## Features
-
-- User registration and login with role-based access (admin, employee, client)
-
-- Product, category, and order management
-
-- Email notifications
-
-- Safe validation and type checking
-
-- Automated test coverage
-
-- Centralized and detailed logging
-
-## How to run locally
-
-```
-git clone https://github.com/your-username/farmacia-backend.git
-cd farmacia-backend
-
-# Install dependencies
-npm install
-
-# Set up environment variables
-cp .env.example .env
-
-# Run migrations and generate Prisma client
-npm run prisma:migrate
-npm run prisma:generate
-
-# Start in development mode
-npm run dev
-```
-
-## Available Scripts
-
-- `npm run dev — starts the server with ts-node-dev`
-
-- `npm run build — compiles TypeScript to JavaScript`
-
-- `npm start — starts the server with Node.js`
-
-- `npm run prisma:studio — opens Prisma Studio`
-
-- `npm test — runs tests with Jest`
-
-- `npm run test:coverage — generates test coverage report`
-
-- `npm run biome:format — formats the codebase`
-
-- `npm run biome:check — runs lint checks`
+| Comando | Descrição |
+|--------|-----------|
+| `npm run dev` | Inicia o servidor com ts-node-dev |
+| `npm run build` | Compila os arquivos TypeScript para JavaScript |
+| `npm start` | Inicia o servidor com Node.js |
+| `npm run prisma:studio` | Abre a interface visual do Prisma |
+| `npm test` | Executa os testes com Jest |
+| `npm run test:coverage` | Gera o relatório de cobertura de testes |
+| `npm run biome:format` | Formata o código fonte |
+| `npm run biome:check` | Verifica problemas de linting |
