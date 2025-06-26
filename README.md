@@ -1,6 +1,6 @@
 # 💊 farmacia-backend
 
-> 🌐 API disponível em produção: [https://pharma-backend.onrender.com](https://pharma-backend.onrender.com)
+> 🌐 API disponível em produção: [https://pharma-backend-derx.onrender.com](https://pharma-backend-derx.onrender.com)
 
 ---
 

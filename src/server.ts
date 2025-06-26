@@ -2,8 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import routes from "./routes";
-import { logRequisicao, tratarErroGlobal } from "./middlewares"; // Middlewares de log e erros
-import { logger } from "./config/logger"; // Winston para logs
+import { logRequisicao, tratarErroGlobal } from "./middlewares";
+import { logger } from "./config/logger";
 
 dotenv.config();
 
@@ -12,13 +12,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Middleware de log de requisições
 app.use(logRequisicao);
 
-// Definir as rotas principais
+// ✅ Rota de status para o Render não acusar erro
+app.get("/", (req, res) => {
+    res.send("API da farmácia está online!");
+});
+
 app.use(routes);
 
-// Middleware global para tratamento de erros
 app.use(tratarErroGlobal);
 
 const PORT = process.env.PORT || 3000;
