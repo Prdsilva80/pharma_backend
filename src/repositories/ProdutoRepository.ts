@@ -8,7 +8,6 @@ export class ProdutoRepository {
         estoque: number,
         categoriaId: string
     ) {
-        // Verifica se a categoria existe antes de criar o produto
         const categoriaExiste = await prisma.categoria.findUnique({
             where: { id: categoriaId },
         });
@@ -28,10 +27,17 @@ export class ProdutoRepository {
         });
     }
 
-    // 🔹 Adicionar a função que estava faltando
     static async buscarPorId(id: string) {
         return prisma.produto.findUnique({
             where: { id },
+        });
+    }
+
+    static async listarTodos() {
+        return prisma.produto.findMany({
+            include: {
+                categoria: true,
+            },
         });
     }
 }
