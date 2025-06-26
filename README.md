@@ -1,110 +1,92 @@
-# farmacia-backend
+# 💊 farmacia-backend
+
+> 🌐 API disponível em produção: [https://pharma-backend.onrender.com](https://pharma-backend.onrender.com)
+
+---
 
 ## 🇧🇷 Visão Geral
 
-Este projeto foi desenvolvido com o objetivo de criar um **sistema completo e escalável de gerenciamento para farmácias**, oferecendo funcionalidades essenciais para o controle de produtos, categorias, pedidos e usuários com diferentes níveis de acesso. A aplicação foi construída utilizando tecnologias modernas como **Node.js**, **TypeScript**, **Express**, **Prisma ORM**, e **PostgreSQL**.
+Este projeto foi desenvolvido com o objetivo de criar um **sistema completo e escalável de gerenciamento para farmácias**, oferecendo funcionalidades essenciais para o controle de produtos, categorias, pedidos e usuários com diferentes níveis de acesso. A aplicação foi construída utilizando tecnologias modernas como **Node.js**, **TypeScript**, **Express**, **Prisma ORM** e **PostgreSQL**.
 
-### Propósito do Projeto
+### 🎯 Propósito do Projeto
 
-A ideia surgiu a partir da necessidade real de digitalizar processos manuais comuns em pequenas e médias farmácias, como o controle de estoque, pedidos e gestão de usuários. A aplicação resolve:
+A ideia surgiu da necessidade real de digitalizar processos manuais comuns em farmácias de pequeno e médio porte. A aplicação resolve:
 
 - O gerenciamento centralizado de produtos, categorias e pedidos;
-- A autenticação e autorização segura de usuários com diferentes papéis (administrador, funcionário, cliente);
-- O envio automático de e-mails para notificação de eventos importantes;
-- A rastreabilidade por meio de logs detalhados.
+- A autenticação e autorização segura de usuários (admin, funcionário, cliente);
+- O envio automático de e-mails;
+- A rastreabilidade completa por meio de logs detalhados.
 
-### Desafios Enfrentados e Soluções
+### 🧠 Desafios Enfrentados e Soluções
 
-1. **Separação de responsabilidades**: no início, os controllers estavam sobrecarregados. A solução foi adotar a arquitetura limpa, com divisão entre `services` e `repositories`.
+1. **Separação de responsabilidades** com uso de `services` e `repositories` (Clean Architecture);
+2. **Segurança robusta** com JWT, `bcrypt` e validações com `Zod`;
+3. **Testes confiáveis** com `Jest` e `Supertest`;
+4. **Observabilidade** com o logger `Winston`.
 
-2. **Segurança de autenticação**: implementar JWT, criptografia de senhas com `bcrypt`, e validações com `Zod` trouxe robustez ao sistema.
+### 📌 Próximas Funcionalidades
 
-3. **Testes automatizados**: criar testes confiáveis com `Jest` e `Supertest` exigiu modularização e simulações realistas, garantindo estabilidade em cada release.
-
-4. **Observabilidade**: com o `Winston`, foi possível registrar logs úteis para debugging e auditoria sem comprometer a performance.
-
-### O que ainda será implementado
-
-- Dashboard com métricas (vendas, pedidos, produtos mais vendidos)
-- Integração com sistemas de pagamento
+- Dashboard com métricas de vendas
+- Integração com gateways de pagamento
 - Upload de imagens para produtos
-- Controle de estoque com alertas automáticos
-- Histórico de atividades por usuário
+- Alerta automático de estoque baixo
+- Histórico de ações por usuário
 
-### Como o projeto pode evoluir
+### 🚀 Evolução futura
 
-Este backend já está preparado para ser acoplado a um frontend em React, Next.js ou até mesmo mobile com React Native. A arquitetura também facilita a criação de microserviços no futuro, com integração via mensageria como Kafka ou RabbitMQ.
+A arquitetura está preparada para integração com frontend (React, Next.js, React Native) e escalabilidade via microserviços com mensageria como Kafka ou RabbitMQ.
 
 ---
 
 ## 🇺🇸 Overview
 
-This project was created to develop a **complete and scalable pharmacy management system**, providing essential features for product control, category and order handling, and role-based user access. It was built using modern technologies like **Node.js**, **TypeScript**, **Express**, **Prisma ORM**, and **PostgreSQL**.
+This project was built to deliver a **complete and scalable pharmacy management system**, offering essential features for handling products, categories, orders, and role-based user access. Built with **Node.js**, **TypeScript**, **Express**, **Prisma ORM**, and **PostgreSQL**.
 
-### Project Purpose
+### 🎯 Project Purpose
 
-The idea was born from the real need to digitize common manual processes in small and mid-sized pharmacies. This system solves:
+Born from a real-world need to digitize manual processes in small and mid-sized pharmacies. This app solves:
 
-- Centralized management of products, categories, and orders
-- Secure user authentication and role-based authorization
-- Automated email notifications
-- Full observability with detailed logs
+- Centralized management for products, categories, and orders;
+- Secure user authentication and role-based authorization;
+- Automated email notifications;
+- Complete traceability through detailed logs.
 
-### Challenges and Solutions
+### 🧠 Challenges & Solutions
 
-1. **Separation of concerns**: Initially, controllers were overloaded. The solution was to adopt clean architecture with services and repositories.
+1. **Separation of concerns** with `services` and `repositories` (Clean Architecture);
+2. **Robust security** using JWT, `bcrypt`, and `Zod`;
+3. **Reliable tests** with `Jest` and `Supertest`;
+4. **Observability** using `Winston` logger.
 
-2. **Authentication security**: JWT, `bcrypt` password hashing, and `Zod` validation provided robust access control.
+### 📌 Upcoming Features
 
-3. **Automated testing**: Reliable testing with `Jest` and `Supertest` required good modularization and realistic mocks.
+- Sales dashboard and KPIs
+- Payment integration
+- Product image uploads
+- Stock level alerts
+- User activity logs
 
-4. **Observability**: With `Winston`, we implemented a detailed logging system without compromising performance.
+### 🚀 Future Evolution
 
-### Future Implementations
-
-- Dashboard with sales and order metrics
-- Integration with payment systems
-- Product image upload
-- Stock control with alerts
-- User activity history
-
-### How this project can grow
-
-This backend is ready to be integrated with a frontend in React, Next.js, or mobile apps using React Native. Its architecture also allows for future microservices and messaging queue integration with Kafka or RabbitMQ.
+The backend is ready to integrate with React, Next.js or React Native, and easily extend into microservices using Kafka or RabbitMQ.
 
 ---
 
-## Como rodar localmente / How to run locally
+## ⚙️ Como rodar localmente / How to run locally
 
 ```bash
-git clone https://github.com/seu-usuario/farmacia-backend.git
-cd farmacia-backend
+git clone https://github.com/Prdsilva80/pharma_backend.git
+cd pharma_backend
 
 # Instale as dependências / Install dependencies
 npm install
 
-# Copie o arquivo de ambiente / Setup .env
+# Copie o ambiente de exemplo / Copy environment file
 cp .env.example .env
 
-# Execute as migrações e gere o Prisma Client / Run migrations
+# Execute as migrações e gere o Prisma Client
 npm run prisma:migrate
 npm run prisma:generate
 
-# Inicie em modo de desenvolvimento / Start in development mode
+# Inicie em modo de desenvolvimento / Start development server
 npm run dev
-```
-
----
-
-## Scripts Disponíveis / Available Scripts
-
-| Comando | Descrição |
-|--------|-----------|
-| `npm run dev` | Inicia o servidor com ts-node-dev |
-| `npm run build` | Compila os arquivos TypeScript para JavaScript |
-| `npm start` | Inicia o servidor com Node.js |
-| `npm run prisma:studio` | Abre a interface visual do Prisma |
-| `npm test` | Executa os testes com Jest |
-| `npm run test:coverage` | Gera o relatório de cobertura de testes |
-| `npm run biome:format` | Formata o código fonte |
-| `npm run biome:check` | Verifica problemas de linting |
